@@ -1,3 +1,36 @@
-<p>
-  user-profile works!
-</p>
+<form class="form-container" [formGroup]="frm">
+  <div>
+    <mat-form-field>
+      <input matInput placeholder="Name &amp; Surname" formControlName="name">
+      <mat-error *ngIf="frm.get('name')?.invalid">Name &amp; Surname is required</mat-error>
+    </mat-form-field>
+  </div>
+  <div>
+    <mat-form-field>
+      <input matInput placeholder="Position" formControlName="position">
+      <mat-error *ngIf="frm.get('position')?.invalid">Position is required</mat-error>
+    </mat-form-field>
+  </div>
+  <div>
+    <mat-form-field>
+      <input matInput placeholder="Contact email" formControlName="contact_email">
+      <mat-error *ngIf="frm.get('contact_email')?.invalid">Contact email is required</mat-error>
+    </mat-form-field>
+  </div>
+  <div>
+    <mat-form-field>
+      <input matInput placeholder="Phone number" formControlName="phone">
+    </mat-form-field>
+  </div>
+  <div>
+    <mat-form-field>
+      <input matInput placeholder="Address" formControlName="contact_email">
+    </mat-form-field>
+  </div>
+  <div>
+    <mat-form-field>
+      <input matInput placeholder="https://example.com" formControlName="website">
+    </mat-form-field>
+  </div>
+</form>
+<button mat-raised-button color="primary" (click)="onUpdate()" [disabled]="!frm.valid || frm.pristine">Update</button>
