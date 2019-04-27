@@ -16,6 +16,7 @@ export class UserProfileComponent implements OnInit {
     this.frm = fb.group({
       displayName: ['', Validators.required],
       position: ['', Validators.required],
+      company: ['', Validators.required],
       contact_email: ['', Validators.required],
       phone: ['', ],
       address: ['', ],
@@ -29,6 +30,7 @@ export class UserProfileComponent implements OnInit {
       delete user.email;
       delete user.photoURL;
       this.user = user;
+      console.log(user);
       this.frm.setValue(user);
     })
   }

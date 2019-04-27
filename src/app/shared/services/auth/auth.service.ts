@@ -13,6 +13,12 @@ interface User {
   photoURL?: string;
   displayName?: string;
   favoriteColor?: string;
+  position: string;
+  company: string;
+  contact_email: string;
+  phone: string;
+  website: string;
+  address: string;
 }
 
 @Injectable({ providedIn: 'root' })
@@ -54,7 +60,13 @@ export class AuthService {
       uid: user.uid,
       email: user.email,
       displayName: user.displayName,
-      photoURL: user.photoURL
+      photoURL: user.photoURL,
+      position: '',
+      company: '',
+      contact_email: user.email,
+      phone: '',
+      website: '',
+      address: ''
     }
     return userRef.set(data, { merge: true })
 
