@@ -7,8 +7,12 @@ const routes: Routes = [
     loadChildren: './modules/user-profile/user-profile.module#UserProfileModule',
   },
   {
+    path: 'cards-list',
+    loadChildren: './modules/business-cards/business-cards.module#BusinessCardsModule',
+  },
+  {
     path: '**',
-    redirectTo: '/'
+    redirectTo: '/cards-list'
   }
 ];
 
