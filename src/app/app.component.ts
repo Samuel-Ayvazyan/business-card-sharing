@@ -8,6 +8,12 @@ import { AuthService } from './shared/services/auth/auth.service';
 })
 export class AppComponent {
   title = 'business-card-sharing';
+  user: any;
+  loading: boolean = true;
   constructor(public auth: AuthService) {
+    this.auth.user.subscribe( user =>{
+      this.user = user;
+      this.loading = false;
+    })
   }
 }
