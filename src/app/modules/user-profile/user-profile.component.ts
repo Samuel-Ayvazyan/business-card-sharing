@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import { UserService } from 'src/app/shared/services/user/user.service';
+import { AuthService } from 'src/app/shared/services/auth/auth.service';
 
 @Component({
   selector: 'app-user-profile',
@@ -8,22 +10,32 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 })
 export class UserProfileComponent implements OnInit {
   frm: FormGroup;
+  user: any;
 
-  constructor(fb: FormBuilder) {
+  constructor(fb: FormBuilder, public auth: AuthService, public uService: UserService) {
     this.frm = fb.group({
-      name: ['', Validators.required],
+      displayName: ['', Validators.required],
       position: ['', Validators.required],
       contact_email: ['', Validators.required],
       phone: ['', ],
       address: ['', ],
       website: ['', ],
+      uid: ['', ],
     });
   }
 
   ngOnInit() {
+    this.auth.user.subscribe( user =>{
+      delete user.email;
+      delete user.photoURL;
+      this.user = user;
+      this.frm.setValue(user);
+    })
   }
 
   onUpdate() {
-    
+    this.uService.updateUser(this.user.uid, this.frm.value).then( () =>{
+      this.frm.markAsPristine();
+    })
   }
 }

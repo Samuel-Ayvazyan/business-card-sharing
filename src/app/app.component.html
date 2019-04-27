@@ -14,5 +14,20 @@
 </mat-toolbar>
 
 <div class="basic-container">
+    <div *ngIf="auth.user | async; then authenticated else guest">
+      </div>
+
+    <ng-template #guest>
+      <h3>Howdy, GUEST</h3>
+      <p>Login to get started...</p>
+      <button mat-raised-button color="primary" (click)="auth.googleLogin()">
+        Login using Google
+      </button>
+    </ng-template>
+    <ng-template #authenticated>
+    </ng-template>
+</div>
+
+<div class="basic-container">
   <router-outlet></router-outlet>
 </div>
